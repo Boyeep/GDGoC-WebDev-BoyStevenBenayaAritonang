@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="A simple event registration website built with HTML, CSS, and JavaScript for GDGoC Web Development Task 1."
+    >
+    <title>Boy's Lab 2026 | Event Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:wght@500;600&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-bar">
+            <p class="brand">GDGoC ITS</p>
+            <p class="bar-note">Web Development Task 1</p>
+        </div>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <h1>Boy's Lab</h1>
+                <a class="hero-button" href="#register">Grab a seat</a>
+            </div>
+
+            <ul class="event-meta">
+                <li>
+                    <span>Date</span>
+                    <strong>Wednesday, April 8, 2026</strong>
+                </li>
+                <li>
+                    <span>Format</span>
+                    <strong>On-site workshop</strong>
+                </li>
+                <li>
+                    <span>Registered</span>
+                    <strong id="registered-count">0 builders</strong>
+                </li>
+                <li>
+                    <span>Spots left</span>
+                    <strong id="spots-left">24 seats left</strong>
+                </li>
+            </ul>
+        </section>
+    </header>
+
+    <main class="main-layout">
+        <section class="about-section" aria-labelledby="about-title">
+            <p id="about-title" class="section-label about-label">About</p>
+
+            <article class="about-item">
+                <h2 class="about-subtitle">Build</h2>
+                <div class="about-note-line" aria-hidden="true"></div>
+                <p class="about-text">
+                    HTML gives a website its structure, while CSS handles layout, spacing, color,
+                    and typography. Together they help turn simple content into something clear,
+                    polished, and easy to explore. Even a small page can feel thoughtful when the
+                    structure is clean and the design is consistent.
+                </p>
+            </article>
+
+            <article class="about-item">
+                <h2 class="about-subtitle">Interact</h2>
+                <div class="about-note-line" aria-hidden="true"></div>
+                <p class="about-text">
+                    JavaScript adds behavior to the page, from form validation to dynamic updates.
+                    It makes small interactions feel smoother and helps a website respond to what
+                    the user does in real time. Small touches like live feedback and dynamic lists
+                    can make a simple site feel much more complete and useful.
+                </p>
+            </article>
+        </section>
+
+        <section id="register" class="registration-section" aria-labelledby="register-title">
+            <div class="section-head">
+                <div>
+                    <p class="section-label">Register</p>
+                    <h2 id="register-title">Save your seat.</h2>
+                </div>
+            </div>
+
+            <form id="registration-form" class="registration-form" novalidate>
+                <label class="field">
+                    <span>Full name</span>
+                    <input id="name" name="name" type="text" placeholder="Boy Steven" required>
+                </label>
+
+                <label class="field">
+                    <span>Email address</span>
+                    <input id="email" name="email" type="email" placeholder="Boy@example.com" required>
+                </label>
+
+                <div class="field">
+                    <span>Experience level</span>
+                    <div class="custom-select" id="track-select">
+                        <input id="track" name="track" type="hidden" value="Beginner">
+                        <button
+                            id="track-trigger"
+                            class="select-trigger"
+                            type="button"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                        >
+                            <span id="track-value" class="select-value">Beginner</span>
+                            <span class="select-chevron" aria-hidden="true">
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M5 7.5L10 12.5L15 7.5" />
+                                </svg>
+                            </span>
+                        </button>
+
+                        <ul id="track-options" class="select-menu" role="listbox" hidden>
+                            <li>
+                                <button
+                                    class="select-option is-selected"
+                                    type="button"
+                                    role="option"
+                                    aria-selected="true"
+                                    data-value="Beginner"
+                                >
+                                    Beginner
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    class="select-option"
+                                    type="button"
+                                    role="option"
+                                    aria-selected="false"
+                                    data-value="Intermediate"
+                                >
+                                    Intermediate
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    class="select-option"
+                                    type="button"
+                                    role="option"
+                                    aria-selected="false"
+                                    data-value="Advanced"
+                                >
+                                    Advanced
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <label class="field">
+                    <span>Main goal</span>
+                    <textarea
+                        id="goal"
+                        name="goal"
+                        placeholder="Describe your main goal"
+                        required
+                    ></textarea>
+                </label>
+
+                <label class="checkbox-row" for="updates">
+                    <input id="updates" name="updates" type="checkbox">
+                    <span>Send me updates after registration.</span>
+                </label>
+
+                <div class="form-actions">
+                    <button id="submit-button" class="submit-button" type="submit">Register</button>
+                    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+                </div>
+            </form>
+
+            <aside class="participants-note" aria-labelledby="participants-title">
+                <h2 id="participants-title" class="note-title">Registered Participants</h2>
+                <div class="note-line" aria-hidden="true"></div>
+                <ul id="participants-list" class="participants-list" aria-live="polite"></ul>
+                <p id="empty-state" class="empty-state">No participants yet.</p>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; Boy's Lab 2026</p>
+        <span class="footer-dot" aria-hidden="true">•</span>
+        <a
+            class="footer-link"
+            href="https://github.com/Boyeep/GDGoC-WebDev-BoyStevenBenayaAritonang"
+            target="_blank"
+            rel="noreferrer"
+        >
+            See The Repository
+        </a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
